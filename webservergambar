@@ -21,8 +21,20 @@ class MemprosesClient(threading.Thread):
         		data = self.client_socket.recv(32)
             		if data:
 				message = message + data #collect seluruh data yang diterima
+				if (message.startswith("GET /1 HTTP/1.1")):
+					self.client_socket.send(get_file('gambar2.jpg'))
+					break
+				if (message.startswith("GET /2 HTTP/1.1")):
+					self.client_socket.send(get_file('gambar3.jpg'))
+					break
+				if (message.startswith("GET /5 HTTP/1.1")):
+					self.client_socket.send(get_file('gambar4.jpg'))
+					break
+				if (message.startswith("GET /4 HTTP/1.1")):
+					self.client_socket.send(get_file('gambar5.jpg'))
+					break	
 				if (message.endswith("\r\n\r\n")):
-					self.client_socket.send(get_file('gambar.jpg'))
+					self.client_socket.send(get_file('gambar1.jpg'))
 					break
             		else:
                			break
